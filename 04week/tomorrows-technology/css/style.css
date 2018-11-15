@@ -60,7 +60,6 @@ border-right:1px solid black;
 padding:40px;
 }
 main{
-
 width:75%;
 float:left;
 }
@@ -109,11 +108,12 @@ border-style: none;
 padding:12px;
 background-color:rgb(34, 34, 34);
 color:white;
+margin-bottom:10px;
 }
 [type="button"]:hover{
 
     background-color:rgb(56, 56, 56);
- 
+  
     }
 
 
@@ -123,6 +123,7 @@ color:white;
 @media (max-width:1011px){
     aside{
         visibility: hidden;
+        position:absolute;
     }
     main{
         width:100%;
@@ -131,15 +132,17 @@ color:white;
 
 nav{
     visibility: hidden;
+    
 }
 
 @media (max-width:620px){
     nav{
         visibility: visible;
+        display:flex;
+        justify-content: space-around;
         width:100%;
         background-color:rgb(48, 48, 48);
-        height:250px;
-        margin-top:420px;
+        height:210px;
     }
     
     body{
@@ -154,24 +157,27 @@ nav{
         font-size:1em;
     }
 
-    h1{
-       
-        text-align:center;
-    }
-
     .navAlignment{
         float:left;
         display:flex;
         flex-direction:column;
-        justify-content: space-between;
+        
     }
 
     h3{
         color:white;
+        font-size:1.4em;
+        padding-bottom:10px;
+        padding-top:20px;
+        font-family:sans-serif;
     }
 
     a{
         color:white;
+        border-bottom:1px solid white;
+        width:75%;
+        padding-bottom:5px;
+        margin-bottom:5px;
     }
 
 }
