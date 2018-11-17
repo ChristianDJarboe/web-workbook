@@ -1,0 +1,42 @@
+
+#wrapper  {
+width:100px;
+height:1000px;
+margin: 0 auto;
+}
+#wrapper:hover >*{
+    transition: width 1s,height 1s, transform 10s;
+}
+#wrapper:hover >:nth-child(odd).box {
+    width:100px;
+    height:100px;
+    transform: translate(500px) rotate(360deg);
+}
+#wrapper:hover >:nth-child(even).box{
+    transform: translate(-500px) rotate(-360deg);
+}
+#wrapper:hover >h2 {
+    opacity:1;
+    -webkit-transition: opacity 2s ease-in-out;
+}
+h2{
+
+
+    opacity:0;
+    position:absolute;
+    left:40%;
+    top:50%;
+    font-size:100px;
+   
+
+}
+.box{
+    width:50px;
+    height:50px;
+    margin:0 auto;
+    border:2px solid black;
+   
+    
+    
+}
+
