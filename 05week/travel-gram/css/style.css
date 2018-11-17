@@ -5,29 +5,32 @@
     margin: 5px;
     
   }
-  
-  .box:nth-child(odd) {
- 
+  #wrapper{
+    width:55%;
+    margin: 0 auto;
   }
-  
-  .box:nth-child(3n) {
-
-  }
-
   .nestedbox{
       
       border:1px solid black;
-      width:35%;
-      height:100%;
-      float: left;
+      width:100%;
+      height:50%;
+    
   }
   .textbox{
-      float:right;
-  
-      width:60%;
-      height:100%;
+      width:100%;   
+  }
+  .orangeBox{
+    background:orange;
+    border:1px solid black;
+    width:25%;
+    height:10%;
+    float:right;
   }
   
+
+
+
+  /*----------BOXES----------*/
   .box1 {
     grid-area: box1;
   }
@@ -38,25 +41,21 @@
   
   .box3 {
     grid-area: box3;
+
   }
   
   .box4 {
     grid-area: box4;
-    
   }
   
   .box5 {
     grid-area: box5;
-   
-
   }
   
   .box6 {
     grid-area: box6;
-
-
   }
-  
+
   .box7 {
     grid-area: box7;
   }
@@ -71,20 +70,28 @@
   .box10 {
     grid-area: box10;
   }
-  
-  
-  
-  /* Extra Small and up (Portrait Phones) */
-  
- 
-  
+    /*----------END BOXES----------*/
 
-  
+
+
+@media (min-width:900px){
+/*Box 1, 2, 6 specific*/
+.box1 >.nestedbox , .box2 >.nestedbox, .box6 >.nestedbox {
+  background:pink;
+  float: left;
+  width:35%;
+  height:100%;
+}
+.box1 >.textbox,   .box2 >.textbox,   .box6 >.textbox{
+  float:right;
+  width:60%;
+  height:90%;
+}
 
     .grid {
     display:grid;
       grid-template-columns: 25% 25% 25% 25%;
-      grid-template-rows:25% 30% 20% 30%;
+      grid-template-rows:30% 40% 30% 54%;
       grid-template-areas: 
         "box1 box1 box2 box2"
         "box3 box3 box4 box5"
@@ -94,3 +101,45 @@
   
   
   
+}
+
+@media(max-width:900px){
+  #wrapper{
+    width:90%;
+    margin:0 auto;
+  }
+  .grid {
+    display:grid;
+      grid-template-columns: 50% 50%;
+      grid-template-rows:50% 20% 30% 40% 45% 40% 40%;
+      grid-template-areas: 
+        "box1 box1"
+        "box2 box3"
+        "box2 box3" 
+        "box6 box6" 
+        "box4 box5"
+        "box7 box8 "
+        "box9 box10";
+    }
+}
+@media(max-width:600px){
+  #wrapper{
+    width:100%;
+  }
+  .grid {
+    display:grid;
+      grid-template-columns: 100%;
+      grid-template-rows:30% 30% 30% 30% 30% 30% 30% 30% 30% 30%;
+      grid-template-areas: 
+        "box1" 
+        "box2 "
+        "box3"
+        "box6 "
+        "box4 "
+        "box5"
+        "box7 "
+        "box8 "
+        "box9 "
+        "box10";
+    }
+}
