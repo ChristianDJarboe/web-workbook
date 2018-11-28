@@ -1,14 +1,17 @@
 'use strict'
 //Variables
+
+
 var height=document.body.scrollHeight;
 var width=  window.innerWidth;   
 var canvas = document.getElementById("fancyBox");   //Declares canvas
 canvas.width = width-20;               //sets width
 canvas.height = document.body.scrollHeight;                 //sets height
 var ctx = canvas.getContext("2d");                  //get context
-ctx.fillStyle = "#228df1";                             //set color
-var dotCount =30;               //particle count
+var dotCount =100;               //particle count
 var dotArray = [];              //Where the particles will be stored
+
+
 
 //End Variables
 
@@ -17,6 +20,9 @@ class dot {
     constructor(xPos, yPos) {   //initializes dot position
         this.xPos = Math.random()*width;
         this.yPos = Math.random()*height;
+
+        var xDis;
+       
         
         if(Math.random()*2>1){ //Direction
             this.velX =(Math.random()*3);  //speed
@@ -29,6 +35,7 @@ class dot {
             this.velY =Math.random()*-3;  //speed
         }
     }
+    
     move(){   //updates position
         this.xPos+=this.velX/3; 
         this.yPos+=this.velY/3; 
@@ -69,6 +76,11 @@ function DrawDot(dot){
 /*Compares the distance between dot i and all the other dot's in the array.
 if the distance is less than the dotConnectDistance, it will draw a line 
 between the two dots.*/
+
+var r=0;
+var g=0;
+var b=0;
+
 function getDistances(i){
     var dotConnectDistanceRange=[150 , -150];
 
@@ -77,9 +89,11 @@ function getDistances(i){
         let temp = dotArray[j];
         if(compare.xPos - temp.xPos < dotConnectDistanceRange[0] && compare.xPos - temp.xPos > dotConnectDistanceRange[1]
         && compare.yPos - temp.yPos < dotConnectDistanceRange[0] && compare.yPos - temp.yPos > dotConnectDistanceRange[1]   ){
+
+          
             ctx.moveTo(compare.xPos, compare.yPos);
             ctx.lineTo(temp.xPos, temp.yPos);
-            ctx.strokeStyle ="#228df1";
+            ctx.strokeStyle ="rgb("+r+","+g+","+b+")";
             ctx.stroke();
             
         }
@@ -87,10 +101,12 @@ function getDistances(i){
     }
    
 }
+
 function updateWidth(){
     width= window.innerWidth;
     canvas.width=width-20;
-    ctx.fillStyle = "#228df1";     //update color?                  
+   
+    ctx.fillStyle = "rgb("+r+","+g+","+b+")";     //update color?                  
    
     if(width<500){
         dotCount=5;
@@ -100,7 +116,7 @@ function updateWidth(){
         dotCount=20;
     }
     if(width>1000){
-        dotCount=30;
+        dotCount=40;
     }
 }
 //-----------------------LOGIC ORDER------------------------------------------
@@ -130,4 +146,86 @@ window.setInterval(function(){
     }
     
   }, 10);
+
+//Changes color
+      var rU=true;
+      var gU=true;
+      var bU=true;
+  window.setInterval(function(){
+      if(rU==true){
+        r+=5;
+        if(r ==255){
+            rU=false;
+        }
+            }else{
+          r-=5
+          if(r<=0){
+              rU=true;
+          }
+        }
+        if(gU==true){
+            g+=2;
+            if(g >=255){
+                gU=false;
+            }
+          }else{
+              g-=2
+              if(g<=0){
+                  gU=true;
+              }
+            }
+        if(bU==true){
+            b+=3;
+            if(b >=255){
+                bU=false;
+            }
+        }else{
+            b-=3
+            if(b<=0){
+                bU=true;
+            }
+            }
+  }, 100);
 }
+
+
+
+/*  ``   ``  ``   ``  ``   ``  ``  ``   ``  ``   ``  ``   ``  ..   ``  ``  ``   ``  ``   ``  ``   ``  
+``   ``  ``  ``   ``  ``   ``  ``   ``  ``   ``  ``  ```  `` --`   ``  ``   ``  ``   ``  ``  ``   ``
+  ``   ``  ``   ``  ``   ``  ``  ``   ``  ``   ``  ``  `..` ``/- `.  ``  ``   ``  ``   ``  ``   ``  
+``   `   ``   `   ``  ``   ``  ``   ``  ``   `   ``   `  ./.  //` :``  ``   ``  ``   `   ``   `   ``
+                                                          :+..+s-.:  `-                             
+   `   ``  ``   `   ``   `   ``   `   ``   `   ``  `` ````:s+:ss./:  o.   `   ``   `   ``  ``   `   
+``   `   ``   `   ``  ``   ``  ``   ``  ``   `   ``   ``- -so/s++o.`+o ``   ``  ``   `   ``   `   ``
+  ``   ``  ``   ``  ``   ``  ``  ``   ``  ``   ``  ``   --:s+o+ss+/oo`.- ``   ``  ``   ``  ``   ``  
+``   ``  ``  ``   ``  ``   ``  ``   ``  ``   ``  ``  `` `//++osooss/.:o.`   ``  ``   ``  ``  ``   ``
+  ``   ``  ``   ``  ``   ``  ``  ``   ``  ``   ``  ``   `/:+ooooo+//o+.````   ``  ``   ``  ``   ``  
+``   ``  ``  ``   ``  ``   ``  ``   ``  ``   ``  ``  ```..-/++++ooo+:-/+.   ``  ``   ``  ``  ``   ``
+  ``   ``  ``   ``  ``   ``  ``  ``   ``  ``   ``  `` -`` ./++++++oooo/` ``   ``  ``   ``  ``   ``  
+``   ``  ``  ``   ``  ``   ``  ``   ``  ``   ``  ``  .+`   -/+ooosss++//:   ``  ``   ``  ``  ``   ``
+   `   ``  ``   `   ``   `   ``   `   ``   `   ``  `-o-    ./oo+++ooso+:` `   ``   `   ``  ``   `   
+                                  ``.-:////-``    .+o.     .:++oosoo+/:-`                           
+``   ``  ``  ``   ``  ``   ``  ``.:osdyo/:::-:. -os:```   `-:/+++++oo+/.`   ``  ``   ``  ``  ``   ``
+  ``   ``  ``   ``  ``   ``  `.:/+/:-:-.````./o//:.````` `./oss+/+oso+/. ``   ``  ``   ``  ``   ``  
+``   ``  ``  ``   ``  ``   `` `-/syso++/ooosyhy:-.....```.:oo/+yyo//:-```   ``  ``   ``  ``  ``   ``
+  ``   ``  ``   ``  ``   ``  ``  .+hddddddddddh:`....-.../+//so/oyso-``  ``   ``  ``   ``  ``   ``  
+``   ``  ``  ``   ``  ``   ``  ``  ./yhdddddddds.`.......:+o+/os+//+/. ``   ``  ``   ``  ``  ``   ``
+  ``   ``  ``   ``  ``   ``  ``  ``  `/shdddddddo:/:.--....:oo//++.  ``  ``   ``  ``   ``  ``   ``  
+``   ``  ``  ``   ``  ``   ``  ``   `` -+oo+////+oshysoso-..-/+:`````  ``   ``  ``   ``  ``  ``   ``
+  ``   ``  ``   ``  ``   ``  ``  ``   `............/oyhhmhs/-..````````  ````````````  ``  ``   ``  
+                                     `o-`...---....../ohdmdh/.-..:+///:---------:::/:`              
+``   `   ``   `   ``   `   ``  ``  `./y``````.---....../oso/::yh+:oyyyyyyssssssoossys-   ``   `   ``
+  ``   ``  ``   ``  ``   ``  ``  ``:oo`    ``-:+oo/:---..-..-+sshhhhyyyyysoooooosssso. ``  ``   ``  
+``   ``  ``  ``   ``  ``   ``  ``-/o/    `.:++++//+osso.````.-://oyyyyyyysssssssoooo+-`  ``  ``   ``
+  ``   ``  ``   ``  ``  ``` `.-:/+:. ```.o/soso++ooooo-.``  `-osyyysyyyyysooooosssso-  ``  ``   ``  
+``   ``  ``  ``   ``  ``.://++++/-.--/+/++y+ss+osooo:/.   ``  `/syyyyssysoosssssssso:``  ``  ``   ``
+  ``   ``  ``   ``  ``  ``.-:++o+o+s++o+ys/s+oyo//os-   ``  `` `:syyossoossooooo/```   ``  ``   ``  
+``   ``  ``  ```......:/+ooso+o+oo+s/s+ooys/ss+sso`.```   ``  ```-+osoossoossso+o/   ``  ``  ``   ``
+  ``   ``  ``   `.-://///+ooso+oo+ss/h:y+sss+ss+o/ ``   ``  ``   `./osooosoooo:::-``   ``  ``   ``  
+``   `   ``   `   ````./oss+/+so/os++y/ss+sso:s.```   `   ``   `   ./ossosso+o. ``   `   ``   `   ``
+              `.--:/+oo+:-.:os+-os+.ss+ss+/s:`.                     ./oosos-`.`                     
+  ``   ``  ``   ``.```  `.+s+.`os:`/so-ss.`-   ``  ``   ``  ``   `  `./+:.-   ``  ``   ``  ``   ``  
+``   ``  ``  ``   ``  .:os/.`-s+. :s/`/+.`   ``  ``  ``   ``  ``   ``  ``   ``  ``   ``  ``  ``   ``
+  ``   ``  ``   ``  .::-```-/:`  :/.  .`  ``   ``  ``   ``  ``   ``  ``  ``   ``  ``   ``  ``   ``  
+``   ``  ``  ``   ``  ``  ```  ``   ``  ``   ``  ``  ``   ``  ``   ``  ``   ``  ``   ``  ``  ``   ``
+ */
