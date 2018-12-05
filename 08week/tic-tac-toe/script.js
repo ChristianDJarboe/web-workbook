@@ -26,12 +26,14 @@ $(document).ready(function() {
             board[$(this).data().cell]="O";
             turn="player1";
         }
+        turncount++;
         //Prints board
         /*This should print and be visible before the checkwin function
         is called but for some reason the final play is never displayed
         on the board. Very confusing. */
         $(this).text(board[$(this).data().cell]);
         checkWin(turn);
+     
       }
     
   })
@@ -93,9 +95,15 @@ $(document).ready(function() {
       win=true;
     }
     if(win ===true){
-      alert(turn+" won!");
+      alert(x+" won!");
       clear();
       win = false;
+    }
+
+    if(turncount === 9 && win===false){
+      alert("Tie Game!")
+      clear();
+
     }
   }
 });
