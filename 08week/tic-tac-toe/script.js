@@ -1,46 +1,66 @@
 'use strict';
+var intturn = Math.random()*2;
+var turn;
+var turncount=0;
+var reset = false;
+var board =[null,null,null,
+            null,null,null,
+            null,null,null];
 
 $(document).ready(function() {
+//init varaiables
+ 
 
-  var intturn = Math.random()*2;
-  var turn;
-  var turncount=0;
-  var board =[null,null,null,
-              null,null,null,
-              null,null,null];
-
+//Selects who goes first
   if(intturn>1){
     turn="player1";
   } else{turn="player2";}
-  
+  //Click function, changes ever turn.
   $('[data-cell]').on('click', function(){
 
-      if($(this).text() ===''){
+      if(board[$(this).data().cell]=''){   //Fills the array board
           if(turn ==="player1"){
-            $(this).text("x");
-            board[$(this).data().cell]="x";
+            board[$(this).data().cell]="X";
             turn="player2";
           }else{
-            $(this).text("x");
-            board[$(this).data().cell]="x";
+            board[$(this).data().cell]="O";
             turn="player1";
         }
+        //Prints board
+        $(this).text(board[$(this).data().cell]);
+        //Clears board
+        if(reset ===true){
+          for(let i=0;i<9;i++){
+            $(this).text='a';
+
+          }
+        }
         turncount++;
-        checkWin();
         console.log(turncount);
-        
+      
       }
 
   })
-
-  function checkWin(){
-    for(let i=0;i<9;i++){ 
-     
-      }
-    
-        
-  }
+//-----------------------------------------
+  $('#clear').on("click", function(){
+    console.log("ASSS");
+    for(let i=0;i<9;i++){
+      board[i]=null;
   
+     
+    }
+    reset = true;
+    turncount=0;
+  
+  })
+
+
+
 
 
 });
+
+
+
+ 
+
