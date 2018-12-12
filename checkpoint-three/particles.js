@@ -6,7 +6,7 @@ var canvas = document.getElementById("fancyBox");   //Declares canvas
 canvas.width = width-20;               //sets width
 canvas.height = document.body.scrollHeight;                 //sets height
 var ctx = canvas.getContext("2d");                  //get context
-ctx.fillStyle = "#228df1";                             //set color
+ctx.fillStyle = 'rgba(255, 165, 0, 1)';                    //set color
 var dotCount =30;               //particle count
 var dotArray = [];              //Where the particles will be stored
 
@@ -14,22 +14,22 @@ var dotArray = [];              //Where the particles will be stored
 
 //------------------------------------------------------
 class dot {
-    constructor(xPos, yPos) {   //initializes dot position
+    constructor(xPos, yPos, size, opacity) {   //initializes dot position
         this.xPos = Math.random()*width;
         this.yPos = Math.random()*height;
-
+        this.size = Math.random()*20;
+        this.opacity = Math.random()*1;
         if(Math.random()*2>1){ //Direction
-            this.velX =(Math.random()*3);  //speed
+            this.velX =(Math.random()*2);  //speed
         }else{
-            this.velX =(Math.random()*-3); //speed
+            this.velX =(Math.random()*-2); //speed
         }
         if(Math.random()*2>1){  //Direction
-            this.velY =Math.random()*3; //speed
+            this.velY =Math.random()*2; //speed
         }else{  
-            this.velY =Math.random()*-3;  //speed
+            this.velY =Math.random()*-2;  //speed
         }
     }
-    
     move(){   //updates position
         this.xPos+=this.velX/3; 
         this.yPos+=this.velY/3; 
@@ -52,7 +52,6 @@ class dot {
        
         
     }
-   
 }
 //-------------------------------------------------------------
 
@@ -64,35 +63,18 @@ function DrawDot(dot){
     var temp=dot
     temp.move();
     ctx.beginPath();
-    ctx.arc(dot.xPos,dot.yPos,5,0,2*Math.PI);
+    ctx.arc(dot.xPos,dot.yPos,dot.size,0,2*Math.PI);
     ctx.fill();
 }
 
 /*Compares the distance between dot i and all the other dot's in the array.
 if the distance is less than the dotConnectDistance, it will draw a line 
 between the two dots.*/
-function getDistances(i){
-    var dotConnectDistanceRange=[150 , -150];
 
-    let compare=dotArray[i];
-    for(var j =0;j<dotCount;j++){
-        let temp = dotArray[j];
-        if(compare.xPos - temp.xPos < dotConnectDistanceRange[0] && compare.xPos - temp.xPos > dotConnectDistanceRange[1]
-        && compare.yPos - temp.yPos < dotConnectDistanceRange[0] && compare.yPos - temp.yPos > dotConnectDistanceRange[1]   ){
-            ctx.moveTo(compare.xPos, compare.yPos);
-            ctx.lineTo(temp.xPos, temp.yPos);
-            ctx.strokeStyle ="#228df1";
-            ctx.stroke();
-            
-        }
-      
-    }
-   
-}
 function updateWidth(){
     width= window.innerWidth;
     canvas.width=width-20;
-    ctx.fillStyle = "#228df1";     //update color?                  
+    ctx.fillStyle = 'rgba(134, 140, 190,.4)';     //update color?                  
    
     if(width<500){
         dotCount=5;
@@ -127,9 +109,5 @@ window.setInterval(function(){
         dotArray[i].move();
         DrawDot(dotArray[i]);
     }
-    for(var i=0;i<dotCount;i++){
-        getDistances(i);
-    }
-    
   }, 10);
 }

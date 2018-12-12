@@ -1,1 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="css/style.css">
 
+    </head>
+    <body>
+        <div id="wrapper">
+                <canvas id="fancyBox">
+                    
+                </canvas>
+            <header>
+                <h1>Bit Clicker</h1>
+                <h2 id ="score">0</h2>
+            </header>
+                <main>
+                    <div id ="clickArea" onclick="elementClick(this.id)">
+                            <img id ="image" src ="images/bitConnect.png">
+                    </div>
+                    <div id= "upgradesList">
+                        <div id="autoClicker" onclick="elementClick(this.id)">
+                            <h2>AutoClicker</h2>
+                            <h3>Count: 0</h3>
+                            <h3>Price: 100</h3>
+                        </div>
+                        <div id="miningRig" onclick="elementClick(this.id)">
+                            <h2>MiningRig</h2>
+                            <h3>Count: 0</h3>
+                            <h3>Price: 500</h3>
+
+                        </div>
+                        <div id="friendHelper" onclick="elementClick(this.id)">
+                            <h2>Pyramid Scheme</h2>
+                            <h3>Count: 0</h3>
+                            <h3>Price: 1000</h3>
+
+                        </div>
+                        <div id="serverRack" onclick="elementClick(this.id)">
+                            <h2>Server Rack</h2>
+                            <h3>Count: 0</h3>
+                            <h3>Price: 2000</h3>
+
+                        </div>
+                        <div id="bitFarm" onclick="elementClick(this.id)">
+                            <h2>Bit Farm</h2>
+                            <h3>Count: 0</h3>
+                            <h3>Price: 4000</h3>
+
+                        </div>
+                        <div id="bitFactory" onclick="elementClick(this.id)">
+                            <h2>Bit Factory</h2>
+                            <h3>Count: 0</h3>
+                            <h3>Price: 7500</h3>
+
+                        </div>
+                        <div id="quantumPC" onclick="elementClick(this.id)">
+                            <h2>Quantum Computer</h2>
+                            <h3>Count: 0</h3>
+                            <h3>Price: 10000</h3>
+
+                        </div>
+                    </div>
+            </main>
+        </div>
+        <script src ="script.js"></script>
+        <script src ="particles.js"></script>
+    </body>
+</html>
